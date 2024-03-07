@@ -1,2 +1,2 @@
 ﻿// A test repo for the Git and VCS assessment
-Console.WriteLine("Hello, World!");
+Console.WriteLine("Replacing the Hello, World message.");

@@ -8,5 +8,6 @@ namespace GitAndVcs
 {
     internal class FileToDelete
     {
+        string toDelete = "this will be deleted, but I'm pushing anyway";
     }
 }

@@ -6,3 +6,5 @@
 ##### - Simulated a text file conflict and resolved it in the Visual studio merge conflict editor
 ##### - Simulated a deleted file conflict and resolved it again in Visual studio
 ##### - Created a new branch in order to write the description of the completed steps in this README.md file
+##### - Deleted the branch
+##### - History of all the work can be reviewed in the github website or in Visual Studio

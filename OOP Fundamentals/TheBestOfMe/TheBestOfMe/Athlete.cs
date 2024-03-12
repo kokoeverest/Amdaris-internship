@@ -1,4 +1,4 @@
-﻿using StaticVsNonstatic;
+﻿using TheBestOfMe;
 
 namespace TheBestOfMe
 {

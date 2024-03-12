@@ -2,9 +2,9 @@
 using System.Collections;
 using TheBestOfMe;
 
-namespace StaticVsNonstatic;
+namespace TheBestOfMe;
 
-public class Person
+public class Person : ICloneable
 {
     private string _name;
     private DateTime _birthDate;
@@ -58,5 +58,11 @@ public class Person
     public static void Work(string work = "I live to work")
     {
         Console.WriteLine(work);
+    }
+
+    public object Clone()
+    {
+        Person clonedPerson = (Person)MemberwiseClone();
+        return clonedPerson;
     }
 }

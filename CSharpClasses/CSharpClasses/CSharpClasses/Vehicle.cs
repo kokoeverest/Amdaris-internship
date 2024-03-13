@@ -10,7 +10,7 @@ namespace CSharpClasses
         void GoBack() { }
         void Stop() { }
     }
-    public abstract class Vehicle(string brand, string model, int year, int speed) : IVehicle
+    public abstract class Vehicle : IVehicle
     {
         private int _left = 0;
         private int _right = 0;
@@ -18,19 +18,23 @@ namespace CSharpClasses
         private int _forward = 0;
         private int _back = 0;
         private int _totalDistance = 0;
+        private int speed;
+        internal readonly string brand;
+        internal readonly string model;
+        internal readonly int year;
 
-        private int MaxSpeed { get => speed;  set => speed = value; }
-        private int CurrentSpeed
+        internal int MaxSpeed { get => speed;  set => speed = value; }
+
+        public Vehicle() { }
+        public Vehicle(string brand, string model, int year, int speed)
         {
-            get
-            {
-                return _currentSpeed;
-            } 
-            set
-            {
-                _currentSpeed = speed / 2;
-            }
+            this.brand = brand;
+            this.model = model;
+            this.year = year;
+            this.speed = speed;
         }
+
+        public string CurrentSpeed => $"Current speed: {_currentSpeed }";
 
         public string Coordinates => $"{brand} {model} is at: {_left} left, {_right} right";
         public string TotalDistance => $"Distance travelled: {_totalDistance} metres";
@@ -48,6 +52,7 @@ namespace CSharpClasses
             int result = speed * time;
             _forward += result;
             _totalDistance += result;
+            _currentSpeed = speed / 2;
         }
         public virtual void GoBack(int speed, int time)
         {
@@ -69,6 +74,10 @@ namespace CSharpClasses
         {
             _right++;
             _left--;
+        }
+        public virtual void ShowCurrentSpeed()
+        {
+            Console.WriteLine($"Travelling at {_currentSpeed}");
         }
 
     }

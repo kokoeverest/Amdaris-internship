@@ -21,7 +21,7 @@
             if (speed > MaxSpeed)
             {
                 Console.WriteLine($"Max speed is {base.MaxSpeed}");
-                base.GoBack(MaxSpeed, time);
+                base.GoBack(base.MaxSpeed, time);
             }
             base.GoBack(speed, time);
         }
@@ -31,9 +31,21 @@
             if (speed > MaxSpeed)
             {
                 Console.WriteLine($"Max speed is {base.MaxSpeed}");
-                base.GoStraight(MaxSpeed, time);
+                base.GoStraight(base.MaxSpeed, time);
             }
             base.GoStraight(speed, time);
+        }
+        public void GoStraight(string direction)
+        {
+            if (direction == "left")
+            {
+                base.GoLeft();
+            }
+            
+            else if (direction == "right")
+            {
+                base.GoRight();
+            }
         }
     }
 }

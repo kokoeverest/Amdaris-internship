@@ -41,7 +41,7 @@ Console.WriteLine(vStrom.CurrentSpeed);
 
 // is and as operators examples
 var vehicle = new Car();
-object car = new Truck(brand: "random brand", model: "random model", year: 0, speed: 0);
+object car = new Truck(brand: "random brand", model: "random model", year: 9999, speed: 0);
 
 if (vehicle.brand is not null && vehicle.model is not null)
 {
@@ -49,7 +49,8 @@ if (vehicle.brand is not null && vehicle.model is not null)
 }
 else
 {
-    var newVehicle = car as Car;
+    // watch the video one more time for this
+    var newVehicle = car as Vehicle;
     if (newVehicle is not null)
     {
         Console.WriteLine(newVehicle);
@@ -76,4 +77,9 @@ while (enumGarage.MoveNext())
     Console.WriteLine(enumGarage.Current.MaxSpeed);
 
 // invoking the custom property LastObject
-enumGarage.LastObject.GoStraight(200, 20);
+enumGarage.LastObject?.GoStraight(200, 20);
+
+// testing the custom Add and Resize methods in the Garage IEnumerator class
+enumGarage.Add(car);
+
+Console.WriteLine(enumGarage.LastObject?.Coordinates);

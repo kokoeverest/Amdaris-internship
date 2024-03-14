@@ -36,13 +36,52 @@ namespace CSharpClasses
         public bool MovePrevious()
         {
             position--;
-            return (position == -1);
+            return (position >= 0);
         }
         public void Reset()
         {
             position = -1;
         }
-        public Vehicle LastObject => _vehicles[_vehicles.Length - 1];
+        public void Add(object element)
+        {
+            if (IsFull())
+            {
+                Resize();
+            }
+            _vehicles.Append(element);
+        }
+        public bool IsFull()
+        {
+            // is this syntax better than _vehicles[_vehicles.Length - 1] 
+            return _vehicles[^1] is not null;
+        }
+        public void Resize()
+        {
+            Console.WriteLine("Resizing garage");
+            Vehicle[] newArray =  new Vehicle[_vehicles.Length * 2];
+            for (int i = 0; i < _vehicles.Length; i++)
+                newArray[i] = _vehicles[i];
+            _vehicles = newArray;
+        }
+        public Vehicle? LastObject
+        {
+            get
+            {
+                if (IsFull())
+                {
+                    return _vehicles[_vehicles.Length - 1];
+                }
+                else
+                {
+                    for (int i = _vehicles.Length - 1; i >= 0; i--)
+                        if (_vehicles[i] is not null)
+                        {
+                            return _vehicles[i];
+                        }
+                }
+                return null;
+            }
+        }
         object IEnumerator.Current
         {
             get

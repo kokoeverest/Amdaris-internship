@@ -15,16 +15,17 @@ carRepo.Add(car2);
 customerRepo.Add(customer1);
 customerRepo.Add(customer2);
 
-
-Parking parking = new Parking(carRepo, customerRepo, 2);
+Parking parking = new(carRepo, customerRepo, 2);
 
 parking.Enter(1, 11);
 parking.Enter(2, 22);
 Console.WriteLine(parking.FreeSpots);
+
 parking.ShowCars();
 parking.Exit(1, 11);
 parking.Exit(2, 22);
 parking.Exit(2, 22);
+
 Console.WriteLine(parking.FreeSpots);
 parking.Enter(1, 11);
 parking.Enter(1, 11);

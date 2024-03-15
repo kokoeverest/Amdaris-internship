@@ -20,7 +20,13 @@
         }
         public void Delete(T entity)
         {
-            _storage.Remove(entity);
+            for (int i = 0; i < _storage.Count; i++)
+            {
+                if (_storage[i].Id == entity.Id)
+                {
+                    _storage.RemoveAt(i);
+                }
+            }
         }
         public void Update(T entity)
         {

@@ -2,15 +2,19 @@
 {
     public class Parking
     {
-        private readonly IRepository<Car> _carRepository;
-        private readonly IRepository<Customer> _customerRepository;
+        private readonly IRepository<Car> _registeredCars;
+        private readonly List<Car> _parkedCars;
+        private readonly IRepository<Customer> _registeredUsers;
+        private int _freeParkingSpace;
         private int _capacity;
 
         public Parking(IRepository<Car> carRepository, IRepository<Customer> customerRepository, int capacity)
         {
-            _carRepository = carRepository;
-            _customerRepository = customerRepository;
+            _registeredCars = carRepository;
+            _registeredUsers = customerRepository;
+            _freeParkingSpace = capacity;
             _capacity = capacity;
+            _parkedCars = [];
         }
         public bool Enter(int customerId,  int carId)
         {
@@ -22,15 +26,19 @@
             
             var customer = result[0] as Customer;
             var car = result[1] as Car;
-    
+            if (_parkedCars.Contains(car))
+            {
+                Console.WriteLine($"Car {car.RegPlate} is already parked here!");
+                return false;
+            }
             if (HasCapacity == false)
             {
                 Console.WriteLine("Parking has no capacity!");
                 return false;
             }
 
-            _capacity--;
-            _carRepository.Add(car);
+            _freeParkingSpace--;
+            _parkedCars.Add(car);
             customer.hasPaid = false;
             Console.WriteLine($"Customer {customer.Name} parked {car.RegPlate}.");
             return true;
@@ -38,6 +46,12 @@
 
         public bool Exit(int customerId, int carId)
         {
+            if (_freeParkingSpace.Equals(_capacity))
+            {
+                Console.WriteLine("Parking is empty, no car to remove!");
+                return false;
+            }
+
             List<Entity> result = Validate(customerId, carId);
 
             if (result.Count < 2)
@@ -47,6 +61,11 @@
 
             var customer = result[0] as Customer;
             var car = result[1] as Car;
+            if (_parkedCars.Contains(car) == false)
+            {
+                Console.WriteLine("This car is not found in the parking!");
+                return false;
+            }
 
             if (customer.hasPaid == false)
             {
@@ -55,8 +74,8 @@
                 Pay(customer);
             }
         
-            _capacity++;
-            _carRepository.Delete(car);
+            _freeParkingSpace++;
+            _parkedCars.Remove(car);
             Console.WriteLine($"Customer {customer.Name} left with {car.RegPlate}.");
             return true;
         }
@@ -64,7 +83,7 @@
         public List<Entity> Validate(int customerId, int carId)
         {
             List<Entity> result = new ();
-            Customer customer = _customerRepository.GetById(customerId);
+            Customer customer = _registeredUsers.GetById(customerId);
             
             if (customer == null)
             {
@@ -75,7 +94,7 @@
                 result.Add(customer);
             }
 
-            Car car = _carRepository.GetById(carId);
+            Car car = _registeredCars.GetById(carId);
 
             if (car == null)
             {
@@ -93,8 +112,14 @@
             Console.WriteLine($"Customer {customer.Name} paid successfully\n");
             customer.hasPaid = true;
         }
-        public bool HasCapacity => _capacity > 0;
+        public bool HasCapacity => _freeParkingSpace > 0;
 
-        public int Capacity => _capacity;
+        public string FreeSpots => $"Parking has {_freeParkingSpace} free spots";
+        public string Capacity => $"Parking has {_capacity } places";
+        public void ShowCars()
+        {
+            foreach (Car car in _parkedCars)
+                Console.WriteLine($"Car: {car.RegPlate}");
+        }
     }
 }

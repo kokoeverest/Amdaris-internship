@@ -55,3 +55,50 @@ Console.WriteLine($"This is a reversed text:\n\n{ReverseString(text)}\n");
 //- In the given string, replace all occurances of "object-oriented programming" with "OOP" and display the new string
 
 Console.WriteLine($"Replacing the 'object-oriented programming' with 'OOP':\n\n{text.Replace("object-oriented programming", "OOP")}");
+
+// Examples for practicing DateTime suggested by ChatGPT
+
+// 1.Calculating Age:
+
+//Use DateTime to capture birth dates and calculate age using DateTime.Now.
+//Utilize TimeSpan to calculate the difference between birth dates and the current date.
+
+// 2.Working with Time Zones:
+
+//Convert a DateTime from one time zone to another using TimeZoneInfo and DateTimeOffset.
+//Display the current time in different time zones using TimeZoneInfo.
+
+// 3.Formatting Date and Time:
+
+//Format a DateTime object into a string representation using various custom format strings.
+//Utilize CultureInfo to format dates and times based on different cultures.
+
+// 4.Date and Time Arithmetic:
+
+//Add or subtract TimeSpan intervals to DateTime objects to perform date and time arithmetic.
+
+// 5.Handling Daylight Saving Time (DST):
+
+//Convert between DateTime and DateTimeOffset to handle DST transitions accurately.
+
+// 6.Scheduling Tasks:
+
+//Implement a simple task scheduler that uses DateTime and TimeSpan to schedule and execute tasks at specific times.
+
+// 7.Working with Durations:
+
+//Calculate the total duration of a series of time intervals using TimeSpan.
+//Display durations in a user-friendly format (e.g., "2 hours and 30 minutes").
+
+// 8.Parsing Date and Time Strings:
+
+//Parse date and time strings in different formats using DateTime.ParseExact and DateTimeOffset.ParseExact.
+
+// 9.Time Span Conversion:
+
+//Convert time spans to different units (e.g., days, hours, minutes) using properties like Days, Hours, and Minutes.
+
+// 10.Internationalization and Localization:
+
+//Use CultureInfo to format dates and times according to the user's preferred culture and language.
+//Display dates and times in different formats based on the selected culture.

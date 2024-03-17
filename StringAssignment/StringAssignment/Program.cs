@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 string text = @"In object-oriented programming, encapsulation is a fundamental principle that involves bundling data and methods that operate on that data within a single unit or class. This concept allows for the hiding of implementation details from the outside world and exposing only the necessary interfaces for interacting with the object. By encapsulating data and methods together, we promote code reusability, maintainability, and flexibility.One of the key benefits of encapsulation is the ability to enforce access control on the members of a class. This means we can specify which parts of the class are accessible to the outside world and which are not. By using access modifiers such as public, private, and protected, we can control the visibility of members, ensuring that they are only accessed in appropriate ways. For example, we may have a class representing a bank account with properties such as balance and methods for depositing and withdrawing funds. By making the balance property private and providing public methods for depositing and withdrawing funds, we encapsulate the internal state of the account and ensure that it can only be modified in a controlled manner. Encapsulation also allows us to enforce data validation and maintain invariants within our classes. By providing controlled access to data through methods, we can ensure that it is always in a valid state. For instance, when setting the balance of a bank account, we can check that the new balance is not negative before updating the internal state of the object. Overall, encapsulation is a powerful concept in object-oriented programming that promotes modularity, reusability, and maintainability. By bundling data and methods together within a class and controlling access to them, we can create more robust and flexible software systems.";
 
-void ExecuteStringExamples(string text)
+void StringExamples(string text)
 
 {
     //- Display the word count of this string
@@ -61,7 +61,7 @@ void ExecuteStringExamples(string text)
     Console.WriteLine($"Replacing the 'object-oriented programming' with 'OOP':\n\n{text.Replace("object-oriented programming", "OOP")}");
 }
 
-void ExecuteDateTimeExamples()
+void DateTimeExamples()
 {
 
 // Examples for practicing DateTime suggested by ChatGPT
@@ -124,5 +124,40 @@ TimeSpan ayaAge = today.Subtract(ayaBirthDayDateTime);
 Console.WriteLine($"\nAya age is: {ayaAge.TotalDays / 365:N2} years");
 }
 
-ExecuteStringExamples(text);
-ExecuteDateTimeExamples();
+
+void OptionalAssignment(string line)
+{
+    string startTag = "<app>";
+    string endTag = "</app>";
+    List<string> tagsStack = [];
+    char[] startAsList = [ '<', 'a', 'p', '>' ];
+
+    while (line != "")
+    {
+        if (line.StartsWith(startTag))
+        {
+            tagsStack.Add(startTag); 
+            line = line.Substring(5);
+        }
+        else if (line.StartsWith(endTag))
+        {
+            if (tagsStack.Count > 0 && tagsStack.Last() == startTag)
+            {
+                tagsStack.RemoveAt(tagsStack.Count - 1);
+                line = line.Substring(6);
+            }
+            else
+            {
+                tagsStack.Add(endTag);
+                line = line.Substring(6);
+            }
+        }
+    }
+    Console.WriteLine(tagsStack.Count);
+}
+
+StringExamples(text);
+DateTimeExamples();
+OptionalAssignment("<app><app><app></app></app>");
+OptionalAssignment("<app></app></app><app><app>");
+OptionalAssignment("</app><app><app></app></app>");

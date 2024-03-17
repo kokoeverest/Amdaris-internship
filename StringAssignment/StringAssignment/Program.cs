@@ -130,7 +130,6 @@ void OptionalAssignment(string line)
     string startTag = "<app>";
     string endTag = "</app>";
     List<string> tagsStack = [];
-    char[] startAsList = [ '<', 'a', 'p', '>' ];
 
     while (line != "")
     {
@@ -161,3 +160,6 @@ DateTimeExamples();
 OptionalAssignment("<app><app><app></app></app>");
 OptionalAssignment("<app></app></app><app><app>");
 OptionalAssignment("</app><app><app></app></app>");
+OptionalAssignment("<app><app><app></app></app></app>");
+OptionalAssignment("</app></app></app><app><app><app>");
+OptionalAssignment("");

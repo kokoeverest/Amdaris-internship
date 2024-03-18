@@ -82,7 +82,7 @@ namespace DelegatesAndLINQ
             //Console.WriteLine(sumList(numbers1));
             //Console.WriteLine(sumList(numbers2));
 
-            // Using the LINQ on the collections
+            // Using LINQ on the collections
 
             var emails = users.Where(user => user.Email != null)
                               .Where(user => user.Id != null)

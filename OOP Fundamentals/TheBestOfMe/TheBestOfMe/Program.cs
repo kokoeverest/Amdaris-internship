@@ -30,18 +30,18 @@ namespace TheBestOfMe
             }
             finally
             {
-                // instantiating the objects.
-                Console.WriteLine(person1.Age);
-                Console.WriteLine(person1.Name);
-                Console.WriteLine(person1.Email);
-                Console.WriteLine(athlete.Name);
-                Console.WriteLine(athlete.Sport);
-                Console.WriteLine(teacher.Proffession);
-                athlete.Work("I am an athlete and I excercise to live");
-                teacher.Work("I live to teach others");
-                int a = 5, b = 10;
-                int result = teacher.Work(a, b);
-                Console.WriteLine($"Teacher calculated {a} + {b} = {result}");
+                //// instantiating the objects.
+                //Console.WriteLine(person1.Age);
+                //Console.WriteLine(person1.Name);
+                //Console.WriteLine(person1.Email);
+                //Console.WriteLine(athlete.Name);
+                //Console.WriteLine(athlete.Sport);
+                //Console.WriteLine(teacher.Proffession);
+                //athlete.Work("I am an athlete and I excercise to live");
+                //teacher.Work("I live to teach others");
+                //int a = 5, b = 10;
+                //int result = teacher.Work(a, b);
+                //Console.WriteLine($"Teacher calculated {a} + {b} = {result}");
 
                 // implementing the IEnumerable interface.
                 Person[] peopleArray = new Person[3]
@@ -52,9 +52,14 @@ namespace TheBestOfMe
                 };
 
                 People peoplelist = new People(peopleArray);
+               
+                var something = peoplelist.GetEnumerator();
+                
+                while (something.MoveNext())
+                    Console.WriteLine(something.Current);
 
-                foreach (Person person in peoplelist)
-                    Console.WriteLine(person.Age);
+                //foreach (Person person in peoplelist)
+                //    Console.WriteLine(person.Age);
 
                 // implementing the ICloneable interface.
                 Teacher teacher2 = (Teacher)teacher.Clone();
@@ -71,4 +76,3 @@ namespace TheBestOfMe
     }
     
 }
-

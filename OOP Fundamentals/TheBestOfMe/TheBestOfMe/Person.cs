@@ -62,7 +62,11 @@ public class Person : ICloneable
 
     public object Clone()
     {
-        Person clonedPerson = (Person)MemberwiseClone();
+        //Person clonedPerson = (Person)MemberwiseClone();
+        Person clonedPerson = new Person();
+        clonedPerson._name = this._name;
+        clonedPerson._birthDate = this._birthDate;
+        clonedPerson._email = this._email;
         return clonedPerson;
     }
 }

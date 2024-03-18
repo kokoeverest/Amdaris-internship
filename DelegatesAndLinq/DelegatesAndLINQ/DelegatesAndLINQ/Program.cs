@@ -12,9 +12,9 @@ namespace DelegatesAndLINQ
                     new User(id: 4, firstName: "Britney", lastName: "Spears"),
                     new User(firstName: "Robin", lastName: "Williams"),
                     new User(firstName: "Ivan", lastName: "Ivanov"),
-                    new User(id: null, firstName: "Petar", lastName: "Stoyanov", email: "petarv@mail.bg", password: "4453672"),
+                    new User(id: null, firstName: "Petar", lastName: "Stoyanov", email: "petarv@mail.bg", password: ""),
                     new User(id: 2, firstName: "Mihail", lastName: "Dimitrov"),
-                    new User(id: 1, firstName: "Hristo", lastName: "Petkanov", email: "petkanov@gmail.gb", password: "11223344")
+                    new User(id: 1, firstName: "Hristo", lastName: "Petkanov", email: "petkanov@gmail.gb", password: "")
             ];
             List<int> numbers1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
             List<int> numbers2 = [10, 20, 30, 40, 50, 60, 70, 80, 3, 100];

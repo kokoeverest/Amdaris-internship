@@ -5,11 +5,11 @@ namespace DebuggingAndExceptions
     public class Athlete
     {
         public string Name { get; set; }
-        public int Sport { get; set; }
-        public int TotalDistance { get; set; }
-        public int TotalHours { get; set; }
-        public int MaxDistance {  get; set; }
-        public int MaxHours { get; set; }
+        private int Sport { get; set; }
+        private int TotalDistance { get; set; }
+        private int TotalMinutes { get; set; }
+        private int MaxDistance {  get; set; }
+        private int MaxHours { get; set; }
         public HashSet<Race> Goals { get; set; }
         public Athlete(string name, int sport)
         {
@@ -67,41 +67,41 @@ namespace DebuggingAndExceptions
                 return (int)RaceEnum.Last;
             }
         }
-        public bool Train(int duration, int distance)
+        public bool Train(int durationMinutes, int distanceKilometers)
         {
-            if (duration < 40)
+            if (durationMinutes < 40)
             {
                 throw new UnderTraingException("This workout is not enough for you!");
             }
-            else if (duration > 720)
+            else if (durationMinutes > 720)
             {
                 throw new OverTrainingException("Risk of overtraing!");
             }
-            if  (distance < 2)
+            if  (distanceKilometers < 2)
             {
                 throw new UnderTraingException("This workout is too short!");
             }
-            else if (distance > 100)
+            else if (distanceKilometers > 100)
             {
                 throw new OverTrainingException("This workout is too long!");
             }
 
-            TotalDistance += distance;
-            TotalHours += duration;
+            TotalDistance += distanceKilometers;
+            TotalMinutes += durationMinutes;
 
-            if (distance > MaxDistance)
+            if (distanceKilometers > MaxDistance)
             {
-                MaxDistance = distance;
+                MaxDistance = distanceKilometers;
             }
-            if (duration > MaxHours)
+            if (durationMinutes > MaxHours)
             {
-                MaxHours = duration;
+                MaxHours = durationMinutes;
             }
             return true;
         }
         public int GetSport => Sport;
         public int HardestWorkout => MaxHours;
         public int LongestRun => MaxDistance;
-        public int GetTotalHours => TotalHours / 60;
+        public int GetTotalHours => TotalMinutes / 60;
     }
 }

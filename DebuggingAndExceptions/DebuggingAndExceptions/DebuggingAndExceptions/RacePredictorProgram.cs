@@ -26,7 +26,9 @@ namespace DebuggingAndExceptions
             Athlete sasho = new(name: "Sasho", sport: 0);
             try
             {
+#if DEBUG
                 PeshoTraining(pesho);
+#endif
                 pesho.AddRace(pirinUltra);
                 gosho.AddRace(pirinUltra);
                 sasho.AddRace(pirinUltra);
@@ -40,7 +42,7 @@ namespace DebuggingAndExceptions
                 pirinUltra.Execute();
             }
         }
-#if (!DEBUG)
+#if (DEBUG)
         public static void PeshoTraining(Athlete athlete)
         {
             athlete.Train(60, 10);
@@ -135,7 +137,7 @@ namespace DebuggingAndExceptions
             athlete.Train(140, 28);
             athlete.Train(120, 25);
             athlete.Train(220, 40);
-#endif 
         }
+#endif 
     }
 }

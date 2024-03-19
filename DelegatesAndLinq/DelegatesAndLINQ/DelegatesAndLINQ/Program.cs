@@ -62,7 +62,7 @@ namespace DelegatesAndLINQ
                 }
                 return x + y;
             };
-
+            
             Func<List<int>, int> sumList = list =>
             {
                 int total = 0;

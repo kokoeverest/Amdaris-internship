@@ -2,7 +2,6 @@
 {
     public class Customer : Entity
     {
-        public string? Name { get; set; }
         public bool hasPaid;
         private List<Entity> _cars;
 
@@ -13,6 +12,7 @@
             this._cars = [];
         }
 
+        public string? Name { get; set; }
         public List<Entity>? Cars { get => _cars; set { } }
     }
 }

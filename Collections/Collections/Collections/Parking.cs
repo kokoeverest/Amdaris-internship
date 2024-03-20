@@ -16,6 +16,10 @@
             _capacity = capacity;
             _parkedCars = [];
         }
+        public bool HasCapacity => _freeParkingSpace > 0;
+
+        public string FreeSpots => $"Parking has {_freeParkingSpace} free spots";
+        public string Capacity => $"Parking has {_capacity } places";
         public bool Enter(int customerId,  int carId)
         {
             List<Entity> result = Validate(customerId, carId);
@@ -24,8 +28,9 @@
                 return false;
             }
             
-            var customer = result[0] as Customer;
-            var car = result[1] as Car;
+            Customer customer = (Customer)result[0];
+            Car car = (Car) result[1];
+
             if (_parkedCars.Contains(car))
             {
                 Console.WriteLine($"Car {car.RegPlate} is already parked here!");
@@ -59,8 +64,8 @@
                 return false;
             }
 
-            var customer = result[0] as Customer;
-            var car = result[1] as Car;
+            Customer customer = (Customer) result[0];
+            Car car = (Car) result[1];
             if (_parkedCars.Contains(car) == false)
             {
                 Console.WriteLine("This car is not found in the parking!");
@@ -83,7 +88,7 @@
         public List<Entity> Validate(int customerId, int carId)
         {
             List<Entity> result = new ();
-            Customer customer = _registeredUsers.GetById(customerId);
+            Customer? customer = _registeredUsers.GetById(customerId);
             
             if (customer == null)
             {
@@ -94,7 +99,7 @@
                 result.Add(customer);
             }
 
-            Car car = _registeredCars.GetById(carId);
+            Car? car = _registeredCars.GetById(carId);
 
             if (car == null)
             {
@@ -112,10 +117,6 @@
             Console.WriteLine($"Customer {customer.Name} paid successfully\n");
             customer.hasPaid = true;
         }
-        public bool HasCapacity => _freeParkingSpace > 0;
-
-        public string FreeSpots => $"Parking has {_freeParkingSpace} free spots";
-        public string Capacity => $"Parking has {_capacity } places";
         public void ShowCars()
         {
             foreach (Car car in _parkedCars)

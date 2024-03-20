@@ -85,15 +85,21 @@ void JoinZipAndSetOperatorsExamples()
 void GroupJoinExamples()
 {
     RegisterPlayers();
+    var joinResult = races.Join(athletes,
+        race => race.Name,
+        person => person.Race?.Name,
+        (race, person) => new {RaceName = race.Name, PersonName = person.Name});
+
+
     var resultGroupJoin = races.GroupJoin(athletes,
         raceName => raceName.Name,
         athleteName => athleteName.Race?.Name,
-        (race, athlete) => new { Race = race, AthleteName = athlete });
+        (race, athlete) => new { Race = race, Athletes = athlete });
 
     foreach (var group in resultGroupJoin)
     {
         Console.WriteLine($"{group.Race.Name}, {group.Race.Distance} km, {group.Race.RaceDate.Date.ToShortDateString()}:");
-        foreach (var competitor in group.AthleteName)
+        foreach (var competitor in group.Athletes)
         {
             Console.WriteLine($"    - {competitor.Name}");
         }
@@ -142,6 +148,8 @@ void AggregationAndQuantifiersMethodsExamples()
     Console.WriteLine(numbers.Contains(1));
     Console.WriteLine(numbers.Any(number => number % 2 == 0));
     Console.WriteLine(numbers.All(number => number > 0));
+    Console.WriteLine(numbers.Aggregate(120, (agg, num) => agg + num / 2));
+    Console.WriteLine(stringNumbers.Aggregate("Hello", (agg, letter) => agg + letter));
 }
 
 void ElementOperatorsExamples()
@@ -178,5 +186,5 @@ void ElementOperatorsExamples()
 //GroupJoinExamples();
 //JoinZipAndSetOperatorsExamples();
 //GroupByExamples();
-//AggregationAndQuantifiersMethodsExamples();
+AggregationAndQuantifiersMethodsExamples();
 //ElementOperatorsExamples();

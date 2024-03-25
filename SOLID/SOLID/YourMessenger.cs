@@ -9,16 +9,26 @@
             if (!Users.Contains(user)) 
             { 
                 Users.Add(user);
-                Console.WriteLine($"{user.Name} added to YourMessenger.");
+                Console.WriteLine($"{user.Name} added to YourMessenger.\n");
             }
             else
             {
-                Console.WriteLine($"{user.Name} already added.");
+                Console.WriteLine($"{user.Name} already added.\n");
             }
         }
-        public void SendMessage(IMessage message)
+        public void SendMessage(User sender, List<User> receivers, IMessage message)
         {
-            Console.WriteLine(message);
+            List<User> real_receivers = [];
+
+            foreach (var receiver in receivers)
+            {
+                if (Users.Contains(receiver))
+                {
+                    real_receivers.Add(receiver);
+                }
+            }
+
+            Console.WriteLine($"New {message}    from: {sender}\n    to: {string.Join(", ", real_receivers)}\n    [{message.Body}]\n");
         }
     }
 }

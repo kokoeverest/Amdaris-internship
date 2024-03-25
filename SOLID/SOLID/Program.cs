@@ -14,10 +14,24 @@ YourMessenger messenger = new();
 User petar = new ("Petar");
 User mitko = new("Mitko");
 User maria = new("Maria");
+User ivan = new("Ivan");
 
 messenger.RegisterUser(petar);
 messenger.RegisterUser(mitko);
 messenger.RegisterUser(maria);
+messenger.RegisterUser(mitko);
 
-messenger.SendMessage(new EmailMessage("Hey, we haven't seen in a long time, man!", "Highschool meeting", petar, mitko));
-messenger.SendMessage(new SmsMessage("We can always use the phone to call each other :)", mitko, petar));
+messenger.SendMessage(sender: mitko, receivers: [ petar ], new EmailMessage(body: "Hey, we haven't seen in a long time, man!", subject: "Highschool meeting"));
+
+messenger.SendMessage(sender: petar, receivers: [ mitko ], new SmsMessage("We can always use the phone to call each other :)"));
+
+messenger.SendMessage(sender: mitko, receivers: [petar], new PushMessage("I also use YourMessenger to communicate with others. Highly recommended"));
+messenger.SendMessage(sender: petar, receivers: [maria, mitko, ivan], new PushMessage("Great!!! I am addding Maria and Ivan to the group chat ;)"));
+messenger.SendMessage(sender: maria, receivers: [mitko, petar], new PushMessage("Ivan is not in YorMessenger yet, I'll text him."));
+
+
+messenger.SendMessage(sender: maria, receivers: [ivan], new SmsMessage("Hey, can you register to YourMessenger so we can add you to the group chat?"));
+messenger.SendMessage(sender: ivan, receivers: [maria], new SmsMessage("No problem!!!"));
+messenger.RegisterUser(ivan);
+
+messenger.SendMessage(sender: petar, receivers: [maria, mitko, ivan], new PushMessage("I can see Ivan is in the chat now :) Hi Ivo"));

@@ -10,28 +10,43 @@
 
 using SOLID;
 
+UserServices service = new();
 YourMessenger messenger = new();
-User petar = new ("Petar");
+User petar = new("Petar");
 User mitko = new("Mitko");
 User maria = new("Maria");
 User ivan = new("Ivan");
 
-messenger.RegisterUser(petar);
-messenger.RegisterUser(mitko);
-messenger.RegisterUser(maria);
-messenger.RegisterUser(mitko);
+service.RegisterUser(petar, messenger);
+service.RegisterUser(mitko, messenger);
+service.RegisterUser(maria, messenger);
+service.RegisterUser(mitko, messenger);
 
-messenger.SendMessage(sender: mitko, receivers: [ petar ], new EmailMessage(body: "Hey, we haven't seen in a long time, man!", subject: "Highschool meeting"));
+List<Tuple<User, List<User>, IMessage>> messages = [
 
-messenger.SendMessage(sender: petar, receivers: [ mitko ], new SmsMessage("We can always use the phone to call each other :)"));
+    new Tuple<User, List<User>, IMessage> (mitko, [petar], new EmailMessage(body: "Hey, we haven't seen in a long time, man!", subject: "Highschool meeting")),
+    new Tuple<User, List<User>, IMessage> (petar, [mitko], new SmsMessage("We can always use the phone to call each other :)")),
+    new Tuple<User, List<User>, IMessage> (mitko, [petar], new PushMessage("I also use YourMessenger to communicate with others. Highly recommended")),
+    new Tuple<User, List<User>, IMessage> (petar, [maria, mitko, ivan], new PushMessage("Great!!! I am addding Maria and Ivan to the group chat ;)")),
+    new Tuple<User, List<User>, IMessage> (maria, [mitko, petar], new PushMessage("Ivan is not in YourMessenger yet, I'll text him.")),
+    new Tuple<User, List<User>, IMessage> (maria, [ivan], new SmsMessage("Hey, can you register to YourMessenger so we can add you to the group chat?")),
+    new Tuple<User, List<User>, IMessage> (ivan, [maria], new SmsMessage("No problem!!!")),
+    new Tuple<User, List<User>, IMessage> (petar, [maria, mitko, ivan], new PushMessage("I can see Ivan is in the chat now :) Hi Ivo"))
+    ];
 
-messenger.SendMessage(sender: mitko, receivers: [petar], new PushMessage("I also use YourMessenger to communicate with others. Highly recommended"));
-messenger.SendMessage(sender: petar, receivers: [maria, mitko, ivan], new PushMessage("Great!!! I am addding Maria and Ivan to the group chat ;)"));
-messenger.SendMessage(sender: maria, receivers: [mitko, petar], new PushMessage("Ivan is not in YorMessenger yet, I'll text him."));
+foreach (Tuple<User, List<User>, IMessage> message in messages)
+{
+    try
+    {
+        messenger.SendMessage(message.Item1, message.Item2, message.Item3);
 
+    }
+    catch (InvalidDataException exc)
+    {
+        Console.WriteLine(exc.Message); ;
+        service.RegisterUser(ivan, messenger);
+    }
+    
+}
 
-messenger.SendMessage(sender: maria, receivers: [ivan], new SmsMessage("Hey, can you register to YourMessenger so we can add you to the group chat?"));
-messenger.SendMessage(sender: ivan, receivers: [maria], new SmsMessage("No problem!!!"));
-messenger.RegisterUser(ivan);
-
-messenger.SendMessage(sender: petar, receivers: [maria, mitko, ivan], new PushMessage("I can see Ivan is in the chat now :) Hi Ivo"));
+Console.WriteLine("No more messages to send");

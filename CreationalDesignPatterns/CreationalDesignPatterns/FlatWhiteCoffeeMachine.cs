@@ -6,7 +6,7 @@
 
         public override string ToString()
         {
-            return $"Flat White machine prepares {Coffee} {base.Coffee} + {base.Milk}";
+            return $"Flat White machine prepares {Coffee} + {base.Coffee} + {base.Milk}";
         }
     }
 }

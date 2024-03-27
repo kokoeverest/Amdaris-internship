@@ -2,13 +2,13 @@
 {
     public class CoffeeMaker
     {
-        public BlackCoffee Coffee = new();
-        public Sugar Sugar = new();
-        public SoyMilk SoyMilk = new();
-        public OatMilk OatMilk = new();
-        public CowMilk CowMilk = new();
-        public ICoffeeMachine? CoffeeMachine = null;
-        public List<IIngredient> Additions = [];
+        public BlackCoffee Coffee { get; set; } = new();
+        public Sugar Sugar { get; set; } = new();
+        public SoyMilk SoyMilk { get; set; } = new();
+        public OatMilk OatMilk { get; set; } = new();
+        public CowMilk CowMilk { get; set; } = new();
+        public ICoffeeMachine? CoffeeMachine { get; set; } = null;
+        public List<IIngredient> Additions { get; set; } = [];
 
 
         public void MakeCoffee()

@@ -6,7 +6,7 @@
         public IIngredient Milk { get; set; } = milkType;
         public override string ToString()
         {
-            return $"Cappucciono machine prepares {Coffee} + {Milk}";
+            return $"Cappuccino machine prepares {Coffee} + {Milk}";
         }
     }
 }

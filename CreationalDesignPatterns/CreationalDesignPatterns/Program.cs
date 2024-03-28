@@ -6,7 +6,8 @@
 //Espresso = Black coffee
 //Cappuccino = Black coffee + Milk
 //Flat white = Black coffee + Black coffee + Milk
-//There is only one type of coffee you can use for each beverage (Black coffee), but there are several types of Milk (Regular milk, Oat milk, Soy milk).
+//There is only one type of coffee you can use for each beverage (Black coffee), but there are several types of Milk
+//(Regular milk, Oat milk, Soy milk).
 
 //And you can also add extra sugar and extra milk to any coffee to get custom beverages, example:
 
@@ -16,7 +17,7 @@
 
 using CreationalDesignPatterns;
 
-CoffeeMaker officeCoffeeMachine = new();
+CoffeeMaker officeCoffeeMachine = new ();
 
 try
 {

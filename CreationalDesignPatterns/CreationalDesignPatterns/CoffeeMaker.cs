@@ -2,12 +2,12 @@
 {
     public class CoffeeMaker
     {
-        public BlackCoffee Coffee { get; set; } = new();
-        public Sugar Sugar { get; set; } = new();
-        public SoyMilk SoyMilk { get; set; } = new();
-        public OatMilk OatMilk { get; set; } = new();
-        public CowMilk CowMilk { get; set; } = new();
-        public ICoffeeMachine? CoffeeMachine { get; set; } = null;
+        public BlackCoffee Coffee { get; set; } = new ();
+        public Sugar? Sugar { get; set; } = null;
+        public SoyMilk? SoyMilk { get; set; } = null;
+        public OatMilk? OatMilk { get; set; } = null;
+        public CowMilk? CowMilk { get; set; } = null;
+        public ICoffeeType? CoffeeMachine { get; set; } = null;
         public List<IIngredient> Additions { get; set; } = [];
 
 
@@ -18,16 +18,16 @@
             var choicesCoffee = "[c] cappuccino    [e] esspresso    [f] flat white        [enter] cancel";
             var additionalIngredients = "[y] soy milk    [c] cow milk    [t] oat milk    [s] sugar    [enter] skip";
 
-            WarmUp();
+            HeatUp();
             string? answer = SelectOption($"{welcomeText}\n{choicesCoffee}");
             
             while (CoffeeMachine is null)
             {
-                if (answer == "")
+                if (string.IsNullOrEmpty(answer))
                 {
                     throw new ("Operation cancelled. Goodbye!");
                 }
-                CoffeeMachine = ChooseMachine(answer);
+                CoffeeMachine = ChooseCoffeeAndMilk(answer);
 
                 if (CoffeeMachine is null)
                 {
@@ -36,9 +36,10 @@
             }
             string? additions = SelectOption($"{selectAdditionalsText}\n{additionalIngredients}");
 
-            while (additions != "")
+            while (!string.IsNullOrEmpty(additions))
             {
                 AddIngredients(additions);
+
                 additions = SelectOption($"Something else?\n{additionalIngredients}");
             }
 
@@ -52,42 +53,42 @@
         {
             if (text == "s")
             {
-                Additions.Add(Sugar);
+                Additions.Add(Sugar is not null ? Sugar : new Sugar());
             }
             else if (text == "c")
             {
-                Additions.Add(CowMilk);
+                Additions.Add(CowMilk is not null ? CowMilk : new CowMilk());
             }
             else if (text == "y")
             {
-                Additions.Add(SoyMilk);
+                Additions.Add(SoyMilk is not null ? SoyMilk : new SoyMilk());
             }
             else if (text == "t")
             {
-                Additions.Add(OatMilk);
+                Additions.Add(OatMilk is not null ? OatMilk : new OatMilk());
             }
         }
 
-        public ICoffeeMachine? ChooseMachine(string answer)
+        public ICoffeeType? ChooseCoffeeAndMilk(string answer)
         {
             if ( answer == "c")
             {
                 var milkType = ChooseMilkType();
-                return new CappuccinoMachine(Coffee, milkType);
+                return new Cappuccino(Coffee, milkType);
             }
             else if ( answer == "e")
             {
-                return new EspressoMachine(Coffee);
+                return new Espresso(Coffee);
             }
             else if (answer == "f")
             {
                 var milkType = ChooseMilkType();
-                return new FlatWhiteCoffeeMachine(Coffee, milkType);
+                return new FlatWhite(Coffee, milkType);
             }
             return null;
         }
 
-        public IIngredient ChooseMilkType()
+        public static IIngredient ChooseMilkType()
         {
             var milkOptions = "[y] soy milk    [c] cow milk    [t] oat milk";
             
@@ -95,15 +96,15 @@
             
             if (choice == "y")
             {
-                return SoyMilk;
+                return new SoyMilk();
             }
             else if (choice == "c")
             {
-                return CowMilk;
+                return new CowMilk();
             }
             else if (choice == "t")
             {
-                return OatMilk;
+                return new OatMilk();
             }
             
             return ChooseMilkType();
@@ -111,17 +112,22 @@
         public static string? SelectOption(string text)
         {
             Console.WriteLine(text);
-            return Console.ReadLine().ToLower();
+            string? answer = Console.ReadLine();
+            if (!string.IsNullOrEmpty(answer))
+            {
+                return answer.ToLower();;
+            }
+            return null;
 
         }
 
-        public void WarmUp()
+        public static void HeatUp()
         {
             Console.WriteLine("Hello! Heating up the machine, please wait...\n");
             Thread.Sleep(5000);
         }
 
-        public void Rinse()
+        public static void Rinse()
         {
             Console.WriteLine("Rinsing the machine...\n");
             Thread.Sleep(5000);

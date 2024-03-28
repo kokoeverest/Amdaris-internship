@@ -2,10 +2,10 @@
 
 namespace CreationalDesignPatterns
 {
-    public interface ICoffeeMachine
+    public abstract class CoffeeType(ICoffee coffeeType) : ICoffeeType
     {
-        public ICoffee Coffee { get; set; }
-        public void MakeCoffee(List<IIngredient> additions)
+        public ICoffee Coffee { get; set; } = coffeeType;
+        public void MakeCoffee(List<IIngredient> additions) 
         {
             StringBuilder builder = new ();
             builder.Append($"{this}");
@@ -17,6 +17,7 @@ namespace CreationalDesignPatterns
             Thread.Sleep(5000);
             Console.WriteLine(builder);
         }
-        public string ToString();
+
+        public override string ToString() => $"{this}";
     }
 }

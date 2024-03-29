@@ -1,4 +1,6 @@
-﻿namespace CreationalDesignPatterns
+﻿using CreationalDesignPatterns.Coffee.Interfaces;
+
+namespace CreationalDesignPatterns.Coffee.Sorts
 {
     public class ArabicCoffee : ICoffee
     {

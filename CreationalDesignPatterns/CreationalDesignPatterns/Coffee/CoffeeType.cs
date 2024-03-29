@@ -1,15 +1,16 @@
 ﻿using System.Text;
+using CreationalDesignPatterns.Coffee.Interfaces;
 
-namespace CreationalDesignPatterns
+namespace CreationalDesignPatterns.Coffee
 {
     public abstract class CoffeeType(ICoffee coffeeType) : ICoffeeType
     {
         public ICoffee Coffee { get; set; } = coffeeType;
-        public void MakeCoffee(List<IIngredient> additions) 
+        public void MakeCoffee(List<IIngredient> additions)
         {
-            StringBuilder builder = new ();
+            StringBuilder builder = new();
             builder.Append($"{this}");
-            foreach ( var addition in additions )
+            foreach (var addition in additions)
             {
                 builder.Append($" + {addition}");
             }

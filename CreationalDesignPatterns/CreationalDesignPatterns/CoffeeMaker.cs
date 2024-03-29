@@ -1,4 +1,8 @@
-﻿namespace CreationalDesignPatterns
+﻿using CreationalDesignPatterns.Coffee.Interfaces;
+using CreationalDesignPatterns.Coffee.Types;
+using CreationalDesignPatterns.Ingredients;
+
+namespace CreationalDesignPatterns
 {
     public class CoffeeMaker
     {

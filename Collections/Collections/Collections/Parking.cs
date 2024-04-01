@@ -1,4 +1,6 @@
-﻿namespace Collections
+﻿using System.Collections;
+
+namespace Collections
 {
     public class Parking
     {
@@ -36,7 +38,7 @@
                 Console.WriteLine($"Car {car.RegPlate} is already parked here!");
                 return false;
             }
-            if (HasCapacity == false)
+            if (!HasCapacity)
             {
                 Console.WriteLine("Parking has no capacity!");
                 return false;
@@ -87,10 +89,10 @@
 
         public List<Entity> Validate(int customerId, int carId)
         {
-            List<Entity> result = new ();
+            Tuple<Entity> result = ;
             Customer? customer = _registeredUsers.GetById(customerId);
             
-            if (customer == null)
+            if (customer is null)
             {
                 Console.WriteLine($"Customer {customerId} not found.");
             }
@@ -101,7 +103,7 @@
 
             Car? car = _registeredCars.GetById(carId);
 
-            if (car == null)
+            if (car is null)
             {
                 Console.WriteLine($"Car {carId} not found.");
             }
@@ -112,7 +114,7 @@
 
             return result;
         }
-        public void Pay(Customer customer)
+        public static void Pay(Customer customer)
         {
             Console.WriteLine($"Customer {customer.Name} paid successfully\n");
             customer.hasPaid = true;

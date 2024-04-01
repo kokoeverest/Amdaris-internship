@@ -4,27 +4,27 @@
     {
         public string Bold()
         {
-            return " [Bold]";
+            return " [bold]";
         }
 
         public string Color()
         {
-            return " [Color]";
+            return " [color]";
         }
 
         public string Italic()
         {
-            return " [Italic]";
+            return " [italic]";
         }
 
         public string Strikethrough()
         {
-            return " [Strikethrough]";
+            return " [strikethrough]";
         }
 
         public string Underline()
         {
-            return " [Italic]";
+            return " [underline]";
         }
     }
 }

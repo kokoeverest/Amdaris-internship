@@ -1,57 +1,63 @@
-﻿using System.Text;
+﻿using StructuralDesignPatterns.Decorators;
+using System.Text;
+using System.Linq;
 
 namespace StructuralDesignPatterns
 {
     public class TextPrinterFacade : TextFormatter
     {
-        public string PrintText(string text)
-        {
-            return RemoveFormatting(text);
-        }
-
-        public string PrintText(string text, char[] formatOptions)
+        private readonly List<string> _styles = [ " [bold]", " [italic]", " [color]", " [strikethrough]", " [underline]" ];
+        public void PrintText(string text)
         {
             text = RemoveFormatting(text);
+            BaseFormatDecorator decorator = new(text);
+            decorator.Print();
+        }
+
+        public void PrintText(string text, char[] formatOptions)
+        {
+            if (!_styles.Any(style => text.EndsWith(style)))
+            {
+                text = RemoveFormatting(text);
+            }
 
             HashSet<char> formatsWithoutDuplicates = new(formatOptions);
-            StringBuilder stringBuilder = new(text);
-
+            BaseFormatDecorator decorator = new(text);
             
             foreach (char option in formatsWithoutDuplicates)
             {
-                if (option == 'b')
+                if (option == 'b' && !text.Contains(" [bold]"))
                 {
-                    stringBuilder.Append(Bold());
+                    decorator.AddFormat(new BoldDecorator());
                 }
-                else if (option == 'i')
+                else if (option == 'i' && !text.Contains(" [italic]"))
                 {
-                    stringBuilder.Append(Italic());
+                    decorator.AddFormat(new ItalicDecorator());
                 }
-                else if (option == 'u')
+                else if (option == 'u' && !text.Contains(" [underline]"))
                 {
-                    stringBuilder.Append(Underline());
+                    decorator.AddFormat(new UnderlineDecorator());
                 }
-                else if (option == 's')
+                else if (option == 's' && !text.Contains(" [strikethrough]"))
                 {
-                    stringBuilder.Append(Strikethrough());
+                    decorator.AddFormat(new StrikethroughDecorator());
                 }
-                else if (option == 'c')
+                else if (option == 'c' && !text.Contains(" [color]"))
                 {
-                    stringBuilder.Append(Color());
+                    decorator.AddFormat(new ColorDecorator());
                 }
-
             }
-            return stringBuilder.ToString();
+            decorator.Print();
         }
 
         public string RemoveFormatting(string text)
         {
             StringBuilder stringBuilder = new(text);
-            stringBuilder.Replace(Bold(), "");
-            stringBuilder.Replace(Italic(), "");
-            stringBuilder.Replace(Strikethrough(), "");
-            stringBuilder.Replace(Color(), "");
-            stringBuilder.Replace(Underline(), "");
+            stringBuilder.Replace(Bold(), string.Empty);
+            stringBuilder.Replace(Italic(), string.Empty);
+            stringBuilder.Replace(Strikethrough(), string.Empty);
+            stringBuilder.Replace(Color(), string.Empty);
+            stringBuilder.Replace(Underline(), string.Empty);
 
             return stringBuilder.ToString();
         }

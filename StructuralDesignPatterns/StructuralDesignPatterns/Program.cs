@@ -20,16 +20,13 @@
 
 using StructuralDesignPatterns;
 
-
-string text = "The quick brown fox jumps over the lazy dog";
+string text = "The quick brown fox jumps over the lazy dog [italic]";
 TextPrinterFacade printer = new();
 
-var result1 = printer.PrintText(text);
+printer.PrintText(text);
 
-var result2 = printer.PrintText(text, ['b', 'i', 'c']);
+printer.PrintText(text, []);
 
-var result3 = printer.PrintText(result2, ['s', 'c', 'c']);
+printer.PrintText(text, ['b', 'i', 'b']);
 
-Console.WriteLine(result1);
-Console.WriteLine(result2);
-Console.WriteLine(result3);
+printer.PrintText(text, ['u', 's']);

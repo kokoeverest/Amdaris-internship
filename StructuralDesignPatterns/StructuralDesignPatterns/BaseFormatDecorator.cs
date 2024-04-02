@@ -12,19 +12,21 @@ namespace StructuralDesignPatterns
             _decorators = [];
         }
 
+        public int DecoratorsCount => _decorators.Count;
         internal void AddFormat(Decorator decorator)
         {
             _decorators.Add(decorator);
 
         }
 
-        public void Print()
+        public bool Print()
         {
             foreach (Decorator decorator in _decorators)
             {
                 _currentText = decorator.Decorate(_currentText);
             }
             Console.WriteLine(_currentText);
+            return true;
         }
     }
 }

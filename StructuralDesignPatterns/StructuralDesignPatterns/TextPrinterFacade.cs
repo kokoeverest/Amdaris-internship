@@ -6,14 +6,14 @@ namespace StructuralDesignPatterns
 {
     public class TextPrinterFacade : TextFormatter
     {
-        public void PrintText(string text)
+        public bool PrintText(string text)
         {
             text = RemoveFormatting(text);
             BaseFormatDecorator decorator = new(text);
-            decorator.Print();
+            return decorator.Print();
         }
 
-        public void PrintText(string text, char[] formatOptions)
+        public bool PrintText(string text, char[] formatOptions)
         {
             HashSet<char> formatsWithoutDuplicates = new(formatOptions);
             BaseFormatDecorator decorator = new(text);
@@ -41,7 +41,7 @@ namespace StructuralDesignPatterns
                     decorator.AddFormat(new ColorDecorator());
                 }
             }
-            decorator.Print();
+            return decorator.Print();
         }
 
         public string RemoveFormatting(string text)

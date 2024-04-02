@@ -2,8 +2,9 @@
 
 namespace BehavioralDesignPatterns.Models
 {
-    public class Product : IProduct
+    public abstract class Product : IProduct
     {
-        private int _id;
+        private static int _id;
+        public int Id { get; set; } = ++_id;
     }
 }

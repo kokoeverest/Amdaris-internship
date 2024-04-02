@@ -7,6 +7,5 @@
         public string? Email { get; set; }
         public string? PhoneNumber { get; set; }
         public void ReceiveMessage(IMessage message);
-        //public void Unsubscribe(IShop shop, bool email, bool phone);
     }
 }

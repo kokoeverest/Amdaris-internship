@@ -6,7 +6,6 @@ namespace StructuralDesignPatterns
 {
     public class TextPrinterFacade : TextFormatter
     {
-        private readonly List<string> _styles = [ " [bold]", " [italic]", " [color]", " [strikethrough]", " [underline]" ];
         public void PrintText(string text)
         {
             text = RemoveFormatting(text);
@@ -16,11 +15,6 @@ namespace StructuralDesignPatterns
 
         public void PrintText(string text, char[] formatOptions)
         {
-            if (!_styles.Any(style => text.EndsWith(style)))
-            {
-                text = RemoveFormatting(text);
-            }
-
             HashSet<char> formatsWithoutDuplicates = new(formatOptions);
             BaseFormatDecorator decorator = new(text);
             

@@ -1,6 +1,6 @@
 ﻿namespace StructuralDesignPatterns.Decorators
 {
-    internal class StrikethroughDecorator : Decorator
+    public class StrikethroughDecorator : Decorator
     {
         internal override string Decorate(string text)
         {

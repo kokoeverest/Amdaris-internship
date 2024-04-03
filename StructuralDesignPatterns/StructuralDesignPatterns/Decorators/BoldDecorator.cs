@@ -1,6 +1,6 @@
 ﻿namespace StructuralDesignPatterns.Decorators
 {
-    internal class BoldDecorator : Decorator
+    public class BoldDecorator : Decorator
     {
         internal override string Decorate(string text)
         {

@@ -1,6 +1,5 @@
 ﻿using StructuralDesignPatterns.Decorators;
 using System.Text;
-using System.Linq;
 
 namespace StructuralDesignPatterns
 {

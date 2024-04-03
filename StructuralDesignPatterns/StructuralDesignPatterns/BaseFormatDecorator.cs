@@ -13,7 +13,7 @@ namespace StructuralDesignPatterns
         }
 
         public int DecoratorsCount => _decorators.Count;
-        internal void AddFormat(Decorator decorator)
+        public void AddFormat(Decorator decorator)
         {
             _decorators.Add(decorator);
 

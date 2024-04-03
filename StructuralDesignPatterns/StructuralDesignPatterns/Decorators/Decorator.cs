@@ -1,6 +1,6 @@
 ﻿namespace StructuralDesignPatterns.Decorators
 {
-    internal abstract class Decorator
+    public abstract class Decorator
     {
         internal abstract string Decorate(string text);
         

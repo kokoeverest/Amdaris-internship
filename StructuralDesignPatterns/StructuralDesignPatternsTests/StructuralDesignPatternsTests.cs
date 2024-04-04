@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using StructuralDesignPatterns;
+using StructuralDesignPatterns.Decorators;
 
 namespace StructuralDesignPatternsTests;
 

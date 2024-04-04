@@ -1,4 +1,6 @@
-﻿namespace PetShop
+﻿using PetShop.Domain.Enums;
+
+namespace PetShop.Domain.Abstractions
 {
     public interface IPet
     {
@@ -6,6 +8,6 @@
         public SpeciesEnum Species { get; set; }
         public SexEnum Sex { get; set; }
         public decimal Price { get; set; }
-        public string Speciality {  get; set; }
+        public string Speciality { get; set; }
     }
 }

@@ -1,6 +1,9 @@
 ﻿using MediatR;
+using PetShop.Application.Pets.Responses;
+using PetShop.Domain.Enums;
+using PetShop.Infrastructure.Abstractions;
 
-namespace PetShop;
+namespace PetShop.Application.Pets.Queries;
 
 public record GetPetsBySpecies(SpeciesEnum Species) : IRequest<List<PetDto>>;
 public class GetPetsBySpeciesHandler : IRequestHandler<GetPetsBySpecies, List<PetDto>>

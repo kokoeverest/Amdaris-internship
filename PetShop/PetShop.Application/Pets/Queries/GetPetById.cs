@@ -1,6 +1,8 @@
 ﻿using MediatR;
+using PetShop.Application.Pets.Responses;
+using PetShop.Infrastructure.Abstractions;
 
-namespace PetShop;
+namespace PetShop.Application.Pets.Queries;
 
 public record GetPetById(int PetId) : IRequest<PetDto>;
 

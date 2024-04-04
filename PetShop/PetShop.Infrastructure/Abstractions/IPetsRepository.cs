@@ -1,4 +1,7 @@
-﻿namespace PetShop
+﻿using PetShop.Domain.Enums;
+using PetShop.Domain.Models;
+
+namespace PetShop.Infrastructure.Abstractions
 {
     public interface IPetsRepository
     {

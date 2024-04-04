@@ -1,10 +1,15 @@
-﻿using PetShop;
+﻿using PetShop.Domain.Enums;
+using PetShop.Infrastructure;
+using PetShop.Application.Pets.Create;
+using PetShop.Application.Pets.Queries;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using PetShop.Infrastructure.Abstractions;
+using PetShop.Application;
 
 var diContainer = new ServiceCollection()
     .AddSingleton<IPetsRepository, PetRepository>()
-    .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(IPetsRepository).Assembly))
+    .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(AssemblyMarker).Assembly))
     .BuildServiceProvider();
 
 IMediator mediator = diContainer.GetRequiredService<IMediator>();

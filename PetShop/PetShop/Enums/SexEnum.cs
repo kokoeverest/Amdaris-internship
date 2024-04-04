@@ -1,4 +1,4 @@
-﻿namespace PetShop
+﻿namespace PetShop.Domain.Enums
 {
     public enum SexEnum
     {

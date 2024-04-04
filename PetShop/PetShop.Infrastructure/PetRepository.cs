@@ -1,7 +1,10 @@
 ﻿
 using System.Linq;
+using PetShop.Domain.Enums;
+using PetShop.Domain.Models;
+using PetShop.Infrastructure.Abstractions;
 
-namespace PetShop
+namespace PetShop.Infrastructure
 {
     public class PetRepository : IPetsRepository
     {

@@ -1,6 +1,9 @@
 ﻿using MediatR;
+using PetShop.Application.Pets.Responses;
+using PetShop.Domain.Enums;
+using PetShop.Infrastructure.Abstractions;
 
-namespace PetShop;
+namespace PetShop.Application.Pets.Queries;
 
 public record GetPetsBySex(SexEnum Sex) : IRequest<List<PetDto>>;
 public class GetPetsBySexHandler : IRequestHandler<GetPetsBySex, List<PetDto>>

@@ -1,6 +1,10 @@
 ﻿using MediatR;
+using PetShop.Application.Pets.Responses;
+using PetShop.Domain.Enums;
+using PetShop.Domain.Models;
+using PetShop.Infrastructure.Abstractions;
 
-namespace PetShop;
+namespace PetShop.Application.Pets.Create;
 
 public record CreatePet(AnimalTypeEnum AnimalType, SpeciesEnum Species, SexEnum Sex, string Speciality, decimal Price) : IRequest<PetDto>;
 

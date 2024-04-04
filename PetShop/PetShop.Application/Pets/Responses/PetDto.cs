@@ -1,6 +1,8 @@
 ﻿using System.Text;
+using PetShop.Domain.Enums;
+using PetShop.Domain.Models;
 
-namespace PetShop
+namespace PetShop.Application.Pets.Responses
 {
     public class PetDto
     {
@@ -27,15 +29,15 @@ namespace PetShop
         public override string ToString()
         {
             string template = "{0, 15} {1, -20}";
-            StringBuilder returnString = new ();
+            StringBuilder returnString = new();
 
-            returnString.AppendLine(string.Format(template, "Pet Id: ", this.PetId));
-            returnString.AppendLine(string.Format(template, "Pet type: ", this.AnimalType));
-            returnString.AppendLine(string.Format(template, "Species: ", this.Species));
-            returnString.AppendLine(string.Format(template, "Sex: ", this.Sex));
-            returnString.AppendLine(string.Format(template, "Price: ", this.Price));
-            returnString.AppendLine(string.Format(template, "Speciality: ", this.Speciality));
-            
+            returnString.AppendLine(string.Format(template, "Pet Id: ", PetId));
+            returnString.AppendLine(string.Format(template, "Pet type: ", AnimalType));
+            returnString.AppendLine(string.Format(template, "Species: ", Species));
+            returnString.AppendLine(string.Format(template, "Sex: ", Sex));
+            returnString.AppendLine(string.Format(template, "Price: ", Price));
+            returnString.AppendLine(string.Format(template, "Speciality: ", Speciality));
+
             return returnString.ToString();
         }
     }

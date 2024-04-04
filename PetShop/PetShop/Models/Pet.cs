@@ -1,4 +1,7 @@
-﻿namespace PetShop
+﻿using PetShop.Domain.Abstractions;
+using PetShop.Domain.Enums;
+
+namespace PetShop.Domain.Models
 {
     public class Pet(AnimalTypeEnum animalType, SpeciesEnum species, SexEnum sex, string speciality, decimal price) : IPet
     {

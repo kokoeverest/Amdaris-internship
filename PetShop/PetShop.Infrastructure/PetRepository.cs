@@ -1,6 +1,4 @@
-﻿
-using System.Linq;
-using PetShop.Domain.Enums;
+﻿using PetShop.Domain.Enums;
 using PetShop.Domain.Models;
 using PetShop.Infrastructure.Abstractions;
 

@@ -6,7 +6,12 @@ using PetShop.Infrastructure.Abstractions;
 
 namespace PetShop.Application.Pets.Create;
 
-public record CreatePet(AnimalTypeEnum AnimalType, SpeciesEnum Species, SexEnum Sex, string Speciality, decimal Price) : IRequest<PetDto>;
+public record CreatePet(
+    AnimalTypeEnum AnimalType,
+    SpeciesEnum Species,
+    SexEnum Sex,
+    string Speciality,
+    decimal Price) : IRequest<PetDto>;
 
 public class CreatePetHandler : IRequestHandler<CreatePet, PetDto>
 {

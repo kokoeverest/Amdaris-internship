@@ -6,9 +6,6 @@
             : base(message)
         {
         }
-
-        public SpeakerDoesntMeetRequirementsException(string format, params object[] args) // Kaloyan: possibly another exception could occur here?
-            : base(string.Format(format, args)) { }
     }
 
     public class NoSessionsApprovedException : Exception

@@ -1,0 +1,2 @@
+#### All examples are based on the AdventureWorks database by Microsoft, here's a link to the 2019 OLTP version:
+#### https://github.com/Microsoft/sql-server-samples/releases/download/adventureworks/AdventureWorks2019.bak

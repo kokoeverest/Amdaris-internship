@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>SponsorSphere</title>
+    </head>
+    <body style="position: relative; background-color: lightgrey;">
+        <div class="myInformation">
+            <h1 id="pageTitle" style="color: blue;">Welcome to SponsorSphere</h1>
+            <h3 style="color: red;">The place for connecting sponsors with athletes who want to become professional</p>
+        </div>
+        <a style="font-size: large; color: green;" href="https://localhost:7026/users/athletes/6" onclick="alert('navigating to the athlete profile site')">Click to go to my profile</a>
+        <br>
+        <img src="c:\Users\user\Downloads\Kofe_Musala.jpg" alt="Kofe picture" width="200" style="border-radius: 50%;">
+        <br>        
+        <form id="registerAthleteForm" name="registerAthleteForm" method="post"  action="https://localhost:7026/users/athletes/register">
+            <input required style="background-color: aqua;" type="text" name="Name" placeholder="First name" value="Kaloyan">
+            <input required type="text" name="LastName" placeholder="Last name" value="Peychev">
+            <br>
+            <input required type="email" name="Email" id="Email" placeholder="Enter a valid email" value="kalo@mail.com">
+            <input required type="password" name="Password" id="password" placeholder="Enter strong password" value="Passw0rd">
+            <br>
+            <input type="text" name="BirthDate" id="BirthDate" value="1983/09/30">
+            <input type="text" name="PhoneNumber" placeholder="Enter phone number" value="1234567890">
+            <br>
+            
+            <select required name="Country" id="countrySelect">
+                <option value="732800">Bulgaria</option>
+            </select>
+
+            <select required name="Sport" id="sportSelect">
+                <option value="10">Running</option>
+            </select>
+            
+            <input required style="width: max-content;" type="submit">
+            </form>
+        <br>
+        <table style="border-style: dashed;">
+            <tr>
+                <th style="width: 100px; text-align: center;">Athlete 1</th>
+                <th style="width: 50px;">Athlete 2</th>
+                <th style="width: 10%;">Athlete 3</th>
+            </tr>
+            <tr>
+                <td style="text-align: center;">Petar</td>
+                <td style="text-align: left;">Georgi</td>
+                <td style="text-align: right;">Mihail</td>
+            </tr>
+        </table>
+    </body>
+</html>
